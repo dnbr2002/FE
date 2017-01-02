@@ -57,6 +57,8 @@ app.use(stormpath.init(app, {
   }
 }));
 
+
+
 app.post('/me', bodyParser.json(), stormpath.loginRequired, function (req, res) {
   function writeError(message) {
     res.status(400);
@@ -108,9 +110,6 @@ app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'src/html/index.html'));
 });
 
-app.get('/profile', function (req, res) {
-  console.log("PROFILE:");
-})
 
 
 spinner.text = 'Starting Dev Sever on port ' + port,
@@ -133,4 +132,9 @@ app.listen(port, function () {
   // app.get('/me', function(req,res) {
   //    console.log("SP Info: " + JSON.stringify(res.body));
   // })
+});
+
+app.get('/home', stormpath.getUser, function (req, res) {
+  var stormpathApplication = req.app.get('stormpathApplication');
+  console.log(JSON.stringify(stormpathApplication));
 });

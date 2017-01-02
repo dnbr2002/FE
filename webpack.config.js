@@ -15,8 +15,12 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.js$/,
-      loaders: ['babel'],
+      loaders: ['react-hot',
+                  'babel'],
+
       include: path.join(__dirname, 'src/js')
-    }]
+    },
+    { test: /\.(png|jpg)$/, 
+      loader: 'url-loader?limit=8192' }]
   }
 };

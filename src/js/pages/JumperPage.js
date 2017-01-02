@@ -1,10 +1,13 @@
 "use strict";
-import React from 'react';
+import React, { PropTypes } from 'react';
 import DocumentTitle from 'react-document-title';
 
 //import {} from 'react-stormpath';
 
-export default class EventHomePage extends React.Component {
+export default class JumperPage extends React.Component {
+    static contextTypes = {
+    user: React.PropTypes.object
+  };
 
   render() {
     return (
@@ -16,7 +19,7 @@ export default class EventHomePage extends React.Component {
         <hr />
         <div className="jumbotron">
           <p>
-            <strong>Welcome to the Eventer Page</strong>
+            <strong>Welcome to the Jumper Page</strong>
           </p>
         </div>
       </div>

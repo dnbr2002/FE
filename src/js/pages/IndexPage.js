@@ -27,7 +27,6 @@ export default class IndexPage extends React.Component {
               <li><LoginLink /></li>
               <li><Link to="/forgot">Forgot Password</Link></li>
             </NotAuthenticated>
-            <li><Link to="/profile">Custom Profile Data</Link></li>
           </ol>
         </div>
       </div>
