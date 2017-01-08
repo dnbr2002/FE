@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 import DocumentTitle from 'react-document-title';
 
 import Header from './Header';
+import Footer from './Footer';
 import { LoginLink } from 'react-stormpath';
 
 export default class MasterPage extends React.Component {
@@ -12,6 +13,7 @@ export default class MasterPage extends React.Component {
         <div className='MasterPage'>
           <Header />
           { this.props.children }
+          <Footer />
         </div>
       </DocumentTitle>
     );

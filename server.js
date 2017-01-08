@@ -6,6 +6,7 @@ var express = require('express');
 var webpack = require('webpack');
 var config = require('./webpack.config');
 var ora = require('ora');
+var dbFunc = require('./model/database.js');
 
 var port = process.env.PORT || 3000;
 
@@ -57,7 +58,18 @@ app.use(stormpath.init(app, {
   }
 }));
 
-
+app.get('/home/:email', function (req, res) {
+    console.log("MIDDLE::HOME USER EMAIL"+ JSON.stringify(req.params.email));
+    dbFunc.verifyUser(req.params.email, function (data, err) {
+      if (data) {
+        console.log("MIDDLE::RETURNED SQL - "+JSON.stringify(data))
+        res.status(200).send(data);
+      }else {
+        console.log("GETFAILED");
+        res.status(500).send('fail');
+      }
+    })
+})
 
 app.post('/me', bodyParser.json(), stormpath.loginRequired, function (req, res) {
   function writeError(message) {
@@ -134,7 +146,3 @@ app.listen(port, function () {
   // })
 });
 
-app.get('/home', stormpath.getUser, function (req, res) {
-  var stormpathApplication = req.app.get('stormpathApplication');
-  console.log(JSON.stringify(stormpathApplication));
-});

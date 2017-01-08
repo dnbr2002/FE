@@ -37,7 +37,7 @@ export default class Header extends React.Component {
                 <li><Link to="/profile" activeClassName="active">Profile</Link></li>
               </Authenticated>
               <Authenticated>
-                <NavDropdown title="Fantasy Sports">
+                <NavDropdown title="Fantasy Sports" alt="Fantasy Sports" id="Fantasy Sports">
                   <MenuItem href="/eventerpage">Fantasy Eventer</MenuItem>
                   <MenuItem href="/jumperpage">Fantasy Jumper</MenuItem>
                   <MenuItem href="/dressagepage">Fantasy Dressage</MenuItem>
