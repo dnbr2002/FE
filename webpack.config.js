@@ -13,14 +13,22 @@ module.exports = {
     publicPath: '/js/'
   },
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loaders: ['react-hot',
-                  'babel'],
+    loaders: [
+      {
+        test: /\.js$/,
+        loaders: ['react-hot',
+          'babel'],
 
-      include: path.join(__dirname, 'src/js')
-    },
-    { test: /\.(png|jpg)$/, 
-      loader: 'url-loader?limit=8192' }]
+        include: path.join(__dirname, 'src/js')
+      },
+      {
+        test: /\.(png|jpg)$/,
+        loader: 'url-loader?limit=8192'
+      },
+      {
+        test: /jquery/,
+        loader: 'expose?$!expose?jQuery'
+      }
+    ]
   }
 };

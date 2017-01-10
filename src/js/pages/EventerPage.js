@@ -1,6 +1,9 @@
 "use strict";
 import React, { PropTypes } from 'react';
 import DocumentTitle from 'react-document-title';
+import { Col, Image, Panel, Grid, Row } from 'react-bootstrap';
+import { Select } from 'react-bootstrap-select';
+import $ from 'jquery';
 
 //import {} from 'react-stormpath';
 
@@ -8,6 +11,8 @@ export default class EventerPage extends React.Component {
     static contextTypes = {
     user: React.PropTypes.object
   };
+
+
 
   render() {
     return (
@@ -25,6 +30,36 @@ export default class EventerPage extends React.Component {
         </div>
         <hr />
 
+ 
+ 
+  <Form horizontal>
+    <FormGroup controlId="formHorizontalEmail">
+      <Col componentClass={ControlLabel} sm={2}>
+        Team Name
+      </Col>
+      <Col sm={10}>
+        <FormControl type="teamName" placeholder="Team Name" />
+      </Col>
+    </FormGroup>
+<FormGroup controlId="formHorizontalEmail">
+      <Col componentClass={ControlLabel} sm={2}>
+       <select className="selectpicker">
+    <option>Mustard</option>
+    <option>Ketchup</option>
+    <option>Relish</option>
+  </select>
+  </Col>
+    </FormGroup>
+
+    <FormGroup>
+      <Col smOffset={2} sm={10}>
+        <Button type="submit">
+          Submit
+        </Button>
+      </Col>
+    </FormGroup>
+  </Form>
+ 
       </div>
     );
   }
