@@ -2,13 +2,39 @@
 import React, { PropTypes } from 'react';
 import DocumentTitle from 'react-document-title';
 import { Col, Image, Panel, Grid, Row } from 'react-bootstrap';
-import { Select } from 'react-bootstrap-select';
+//import { Select } from 'react-bootstrap-select';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 import $ from 'jquery';
 
 //import {} from 'react-stormpath';
 
+//var Select = require('react-select');
+
+// var Teir1Options = [
+//     { value: 'one', label: 'One' },
+//     { value: 'two', label: 'Two' }
+// ];
+
+// function logChange(val) {
+//     console.log("Selected: " + JSON.stringify(val));
+// }
+
+var getTier1 = (input) => {
+  fetch(`/eventers/` + 1)
+    .then(function (response) {
+      return response.json();
+    }).then(function (json) {
+      console.log('REACT::EVENTERHOME::CDM::PARSEDJSON', JSON.stringify(json));
+      console.log('REACT::EVENTERHOME::CDM::PARSEDJSON', { options: json });
+      return { options: json };
+    }).catch(function (ex) {
+      console.log('REACT::EVENTERHOME::ERROR GETTTING TIER1-', ex)
+    })
+}
+
 export default class EventerPage extends React.Component {
-    static contextTypes = {
+  static contextTypes = {
     user: React.PropTypes.object
   };
 
@@ -18,8 +44,8 @@ export default class EventerPage extends React.Component {
     return (
       <div className="container">
         <div className="jumbotron">
-         <h2>Welcome Fantasy Eventers</h2>
-         <p>Here's the basics:</p>
+          <h2>Welcome Fantasy Eventers</h2>
+          <p>Here's the basics:</p>
           <ol>
             <li>Riders are posted as final 48 hrs before the start of the next great event.</li>
             <li>You will able to select one scratch replacement in case you select a horse and rider pair that scratch before the event.</li>
@@ -28,38 +54,16 @@ export default class EventerPage extends React.Component {
             <li>Once you've picked you team, go create your own league, invite your friends or join and existing league.</li>
           </ol>
         </div>
-        <hr />
+        <h1>Teir 1 Eventers</h1>
+        <h2>Pick 2</h2>
 
- 
- 
-  <Form horizontal>
-    <FormGroup controlId="formHorizontalEmail">
-      <Col componentClass={ControlLabel} sm={2}>
-        Team Name
-      </Col>
-      <Col sm={10}>
-        <FormControl type="teamName" placeholder="Team Name" />
-      </Col>
-    </FormGroup>
-<FormGroup controlId="formHorizontalEmail">
-      <Col componentClass={ControlLabel} sm={2}>
-       <select className="selectpicker">
-    <option>Mustard</option>
-    <option>Ketchup</option>
-    <option>Relish</option>
-  </select>
-  </Col>
-    </FormGroup>
+        <Select.Async
+          name="form-field-name"
+          multi={true}
+          value=""
+          loadOptions={getTier1}
+          />
 
-    <FormGroup>
-      <Col smOffset={2} sm={10}>
-        <Button type="submit">
-          Submit
-        </Button>
-      </Col>
-    </FormGroup>
-  </Form>
- 
       </div>
     );
   }

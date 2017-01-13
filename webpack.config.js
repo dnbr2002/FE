@@ -25,10 +25,7 @@ module.exports = {
         test: /\.(png|jpg)$/,
         loader: 'url-loader?limit=8192'
       },
-      {
-        test: /jquery/,
-        loader: 'expose?$!expose?jQuery'
-      }
+      { test: /\.css$/, loader: "style!css" }
     ]
   }
 };

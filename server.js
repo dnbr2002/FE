@@ -58,6 +58,7 @@ app.use(stormpath.init(app, {
   }
 }));
 
+
 app.get('/home/:email', function (req, res) {
     console.log("MIDDLE::HOME USER EMAIL"+ JSON.stringify(req.params.email));
     dbFunc.verifyUser(req.params.email, function (data, err) {
@@ -70,6 +71,20 @@ app.get('/home/:email', function (req, res) {
       }
     })
 })
+
+app.get('/eventers/:tier', function (req, res) {
+    console.log("MIDDLE::GET TIER 1 EVENTERS CALLED "+ JSON.stringify(req.params.tier));
+    dbFunc.getEventers(req.params.tier, function (data, err) {
+      if (data) {
+        console.log("MIDDLE::TIER 1 EVENTERS "+JSON.stringify(data))
+        res.status(200).send(data);
+      }else {
+        console.log("MIDDLE::GETFAILED FOR TIER 1 EVENTERS");
+        res.status(500).send('fail');
+      }
+    })
+})
+
 
 app.post('/me', bodyParser.json(), stormpath.loginRequired, function (req, res) {
   function writeError(message) {

@@ -37,17 +37,40 @@ function asMyQuote(input) {
 
 exports.verifyUser = verifyUser;
 function verifyUser(email, cb) {
-    console.log("DATA::VERIFYUSER::"+email);
-    var sql = 'select * from users where email='+ asMyQuote(email);
-    console.log("DATA::GETDATA::SQL-"+sql+ " ON CONNECTION::"+JSON.stringify(db));
-   db.any(sql)
+    console.log("DATA::VERIFYUSER::" + email);
+    var sql = 'select * from users where email=' + asMyQuote(email);
+    console.log("DATA::GETDATA::SQL-" + sql + " ON CONNECTION::" + JSON.stringify(db));
+    db.any(sql)
         .then(function (data) {
-            console.log("DATA::GETDATA::ROWS-" + JSON.stringify(data));
+            console.log("DATA::VERIFYUSERS::ROWS-" + JSON.stringify(data));
             //resolve(rows)
             cb(data);
         })
         .catch(function (error) {
-            console.log("DATA::VERIFYUSER::ERROR-"+JSON.stringify(error));
+            console.log("DATA::VERIFYUSER::ERROR-" + JSON.stringify(error));
+            cb(error);
+            // error;
+        });
+}
+
+exports.getEventers = getEventers;
+function getEventers(tier, cb) {
+    console.log("DATA::GETEVENTERS::PARAMETER" + tier);
+   // var sql = "select c.pk_id_competitor, r.ridername, r.pic, h.horsename, c.eventtier "
+        var sql = "select r.ridername as value, c.eventtier as label "
+        + "from competitors c "
+        + "join riders r on c.fk_rider=r.pk_id_rider "
+        + "join horses h on c.fk_horse=h.pk_id_horse "
+        + "where eventtier=" + tier
+    console.log("DATA::GETEVENTERS::SQL-" + sql + " ON CONNECTION::" + JSON.stringify(db));
+    db.any(sql)
+        .then(function (data) {
+            console.log("DATA::GETEVENTERS::ROWS-" + JSON.stringify(data));
+            //resolve(rows)
+            cb(data);
+        })
+        .catch(function (error) {
+            console.log("DATA::GETEVENTERS::ERROR-" + JSON.stringify(error));
             cb(error);
             // error;
         });
