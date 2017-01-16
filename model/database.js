@@ -57,7 +57,7 @@ exports.getEventers = getEventers;
 function getEventers(tier, cb) {
     console.log("DATA::GETEVENTERS::PARAMETER" + tier);
    // var sql = "select c.pk_id_competitor, r.ridername, r.pic, h.horsename, c.eventtier "
-        var sql = "select r.ridername as value, c.eventtier as label "
+        var sql = "select h.horsename as value, r.ridername as label "
         + "from competitors c "
         + "join riders r on c.fk_rider=r.pk_id_rider "
         + "join horses h on c.fk_horse=h.pk_id_horse "

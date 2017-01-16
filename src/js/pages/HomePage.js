@@ -7,7 +7,7 @@ import React, { PropTypes } from 'react';
 import DocumentTitle from 'react-document-title';
 import { Authenticated } from 'react-stormpath';
 import { Col, Image, Panel, Grid, Row } from 'react-bootstrap';
-import $ from 'jquery';
+//import $ from 'jquery';
 
 var dbuser = {};
 

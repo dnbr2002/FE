@@ -23,12 +23,27 @@ function failAndExit(err) {
   process.exit(1);
 }
 
+app.use(express.static(__dirname + '/public/'));
+
 app.use(morgan('combined'));
 
 app.use(require('webpack-dev-middleware')(compiler, {
-  noInfo: true,
+ filename: 'bundle.js',
+  hot: true,
+  stats: {
+    colors: true,
+  },
+  historyApiFallback: true,
   publicPath: config.output.publicPath
 }));
+
+app.use(require('webpack-hot-middleware')(compiler, {
+  log: console.log,
+  path: '/__webpack_hmr',
+  heartbeat: 10 * 1000
+}));
+
+
 
 app.use('/css', express.static(__dirname + '/src/css'));
 

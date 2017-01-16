@@ -7,12 +7,6 @@ import { Navbar, NavItem, NavDropdown, DropdownButton, MenuItem } from 'react-bo
 
 import { LoginLink, LogoutLink, NotAuthenticated, Authenticated } from 'react-stormpath';
 
-const dropdownItems = [
-  { href: '/eventer', name: 'Fantasy Eventer' },
-  { href: '/jumper', name: 'Fantasy Jumper' },
-  { href: '/dressage', name: 'Fantasy Dressage' },
-];
-
 const headerDivStyle = {
   backgroundColor: "#e89543"
 };
@@ -35,6 +29,9 @@ export default class Header extends React.Component {
               </Authenticated>
               <Authenticated>
                 <li><Link to="/profile" activeClassName="active">Profile</Link></li>
+              </Authenticated>
+                   <Authenticated>
+                <li><Link to="/sortable" activeClassName="active">sortable</Link></li>
               </Authenticated>
               <Authenticated>
                 <NavDropdown title="Fantasy Sports" alt="Fantasy Sports" id="Fantasy Sports">

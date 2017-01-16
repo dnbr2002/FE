@@ -2,9 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { IndexRoute, Route, browserHistory } from 'react-router';
 import ReactStormpath, { Router, HomeRoute, LoginRoute, AuthenticatedRoute } from 'react-stormpath';
-import { ChangePasswordPage, MasterPage, IndexPage, LoginPage, RegisterPage, ResetPasswordPage, VerifyEmailPage, ProfilePage, EventerPage, JumperPage, DressagePage, MyTeamsPage, HomePage } from './pages';
+import { ChangePasswordPage, MasterPage, IndexPage, LoginPage, RegisterPage, ResetPasswordPage, 
+  VerifyEmailPage, ProfilePage, EventerPage, JumperPage, DressagePage, MyTeamsPage, HomePage, sortable } from './pages';
 
 ReactStormpath.init();
+
+var colors = ["Red","Green","Blue","Yellow","Black","White","Orange"];
 
 ReactDOM.render(
   <Router history={browserHistory}>
@@ -22,6 +25,9 @@ ReactDOM.render(
         <Route path='/profile' component={ProfilePage} />        
       </AuthenticatedRoute>
       <AuthenticatedRoute>
+    <Route path='/sortable' component={sortable} />        
+  </AuthenticatedRoute>
+      <AuthenticatedRoute>
       <Route path='/eventerpage' component={EventerPage} />
       </AuthenticatedRoute>
       <AuthenticatedRoute>
@@ -37,3 +43,6 @@ ReactDOM.render(
   </Router>,
   document.getElementById('app-container')
 );
+if (module.hot) {
+  module.hot.accept();
+}
