@@ -62,7 +62,7 @@ export default class HomePage extends React.Component {
     return (
       <div className="container">
         <div className="jumbotron">
-          <h1>Fantasy Equestrian</h1>
+          <h1>Fantasy Eq</h1>
           <p>Welcome {this.context.user ? ' ' + this.context.user.givenName : null}.  Select your fantasy equestrian sport, then choose your horse and rider pairs before the next competition!!</p>
           <p>HERE IS MY DBUSER:: {' '+this.state.firstname + ' ' + this.state.lastname + ' - ' + this.props.email}</p>
           <p><a className="btn btn-warning btn-lg" href="#" role="button">Learn more »</a></p>

@@ -14,32 +14,15 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
-  <style>
-  #draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
-  #droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
-  </style>
-
-<script src="https://use.fontawesome.com/ce2fe49dd7.js"></script>
-<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-<script>
-        $(function () {
-          $("#draggable").draggable();
-          $("#droppable").droppable({
-            drop: function (event, ui) {
-              $(this)
-                .addClass("ui-state-highlight")
-                .find("p")
-                .html("Dropped!");
-            }
-          });
-        });
-      </script>
+  <!--<link rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap-table/2.9.2/react-bootstrap-table-all.min.css"></link>-->
 
 
-<!--<style>
+  <script src="https://npmcdn.com/react-bootstrap-table/dist/react-bootstrap-table.min.js"></script>
+  <script src="https://use.fontawesome.com/ce2fe49dd7.js"></script>
+  <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <!--<style>
     .col_pad {
     background-color: transparent;
     background-image: linear-gradient(to bottom, rgba(30, 87, 153, 0.2) 0%, rgba(125, 185, 232, 0) 100%);
@@ -48,19 +31,20 @@
     padding: 5px;
 }
 </style>-->
-<!-- Latest compiled and minified CSS -->
-<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">-->
+  <!-- Latest compiled and minified CSS -->
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">-->
 
-<!-- Optional theme -->
-<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css">-->
-<link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <!-- Optional theme -->
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css">-->
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/react-bootstrap-table.css">
 </head>
 
 <body>
-  
+
   <div id="app-container"></div>
   <script src="/src/js/app.js"></script>
-  
+
 
 </body>
 
