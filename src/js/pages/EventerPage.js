@@ -19,42 +19,28 @@ var getTier1 = fetch(`/eventers/` + 1)
   .then(function (response) {
     return response.json();
   }).then(function (json) {
-   // console.log('REACT::EVENTTIER1::CDM::PARSEDJSON', JSON.stringify(json));
-   // console.log('REACT::EVENTTIER1::CDM::PARSEDJSON', { options: json });
     EvtTier1 = json;
-  //  console.log('REACT::EVENTTIER1::CDM::TIER1-', EvtTier1);
-    //  console.log('REACT::EVENTERHOME::CDM::OPTIONS-', options);
     return { options: json };
   }).catch(function (ex) {
-  //  console.log('REACT::EVENTTIER1::ERROR GETTTING TIER1-', ex)
+
   })
 
 var getTier2 = fetch(`/eventers/` + 2)
   .then(function (response) {
     return response.json();
   }).then(function (json) {
-   // console.log('REACT::EVENTTIER2::CDM::PARSEDJSON', JSON.stringify(json));
-  //  console.log('REACT::EVENTTIER2::CDM::PARSEDJSON', { options: json });
     EvtTier2 = json;
- //   console.log('REACT::EVENTHOME2::CDM::TIER2-', EvtTier2);
-    //  console.log('REACT::EVENTERHOME::CDM::OPTIONS-', options);
     return { options: json };
   }).catch(function (ex) {
-  //  console.log('REACT::EVENTTIER2::ERROR GETTTING TIER2-', ex)
   })
 
 var getTier3 = fetch(`/eventers/` + 3)
   .then(function (response) {
     return response.json();
   }).then(function (json) {
-  //  console.log('REACT::EVENTTIER3::CDM::PARSEDJSON', JSON.stringify(json));
-  //  console.log('REACT::EVENTTIER3::CDM::PARSEDJSON', { options: json });
     EvtTier3 = json;
-  //  console.log('REACT::EVENTTIER3::CDM::TIER3-', EvtTier3);
-    //  console.log('REACT::EVENTERHOME::CDM::OPTIONS-', options);
     return { options: json };
   }).catch(function (ex) {
-  //  console.log('REACT::EVENTTIER3::ERROR GETTTING TIER3-', ex)
   })
 
 
@@ -95,23 +81,7 @@ export default class EventerPage extends React.Component {
       // componentWillMount() { }
 
    componentDidMount() {
-    // console.log('REACTHOME::CDM::PARSEDCONTEXTUSER',this.context.user)
-    // fetch('/home/' + this.context.user.email)
-    //   .then(function (response) {
-    //     return response.json()
-    //   }).then(function (json) {
-    //     console.log('REACTHOME::CDM::PARSEDJSON', JSON.stringify(json));
-    //     dbuser = json[0];
-    //     this.setState({
-    //     id: dbuser.pk_id_user,
-    //     firstname: dbuser.firstname,
-    //     lastname: dbuser.lastname, 
-    //     email: dbuser.email
-    //     });
-    //   }.bind(this))
-    //   .catch(function (ex) {
-    //     console.log('REACTHOME::CDM::ERRORPARSING', ex)
-    //   });
+
   }
 
   handleChange(event) {
