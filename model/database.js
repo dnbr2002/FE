@@ -76,6 +76,26 @@ function getEventers(tier, cb) {
         });
 }
 
+exports.submitEventTeam = submitEventTeam;
+function submitEventTeam(userId, teamName, cb){
+    console.log("DATA::SUBMITEVENTTEAM::PARAMETER::USERID",userId); 
+    console.log("DATA::SUBMITEVENTTEAM::PARAMETER::TEAMNAME",teamName); 
+
+    var sql = "Insert into eventteams (fk_userid,etname) values ("+userId+","+asMyQuote(teamName)+");"
+    console.log("DATA::INSERTEAMNAME::SQL-" + sql + " ON CONNECTION::" + JSON.stringify(db));
+        db.any(sql)
+        .then(function (data) {
+            console.log("DATA::INSERTTEAMNAME::SUCCESS");
+            //resolve(rows)
+            cb('SUCCESS');
+        })
+        .catch(function (error) {
+            console.log("DATA::INSERTEAMNAME::ERROR" + JSON.stringify(error));
+            cb(error);
+            // error;
+        });   
+}
+
 
 
 

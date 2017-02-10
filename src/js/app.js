@@ -7,6 +7,7 @@ import {
   VerifyEmailPage, ProfilePage, EventerPage, JumperPage, DressagePage, MyTeamsPage, HomePage, ListItem
 } from './pages';
 
+
 ReactStormpath.init();
 
 ReactDOM.render(
@@ -35,7 +36,7 @@ ReactDOM.render(
       </AuthenticatedRoute>
       <AuthenticatedRoute>
         <Route path='/myteamspage' component={MyTeamsPage} />
-      </AuthenticatedRoute>
+      </AuthenticatedRoute>      
     </HomeRoute>
   </Router>,
   document.getElementById('app-container')

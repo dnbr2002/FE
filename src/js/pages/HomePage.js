@@ -2,14 +2,18 @@ const jumboDivStyle = {
   backgroundColor: "#e5e0dc"
 };
 
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import React, { PropTypes } from 'react';
 import DocumentTitle from 'react-document-title';
 import { Authenticated } from 'react-stormpath';
 import { Col, Image, Panel, Grid, Row } from 'react-bootstrap';
+import  EventerPage from './EventerPage';
+import  MasterPage  from './MasterPage';
 //import $ from 'jquery';
 
 var dbuser = {};
+
+//const element = <UserId id={...} />;
 
 export default class HomePage extends React.Component {
   static contextTypes = {
@@ -18,8 +22,12 @@ export default class HomePage extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { dbuser: {} };
+    console.log("REACT::HOMEPAGE::PROPS::",this.props);
+    console.log("REACT::HOME::IDPROP::",this.props.id)
+        console.log("REACT::MasterPAGE::PROPS::",this.props.MasterPage);
 
+    //this.state = { dbuser: {} };
+    
     //this.componentDidMount = this.componentDidMount.bind(this);
   }
 
@@ -39,23 +47,7 @@ export default class HomePage extends React.Component {
   // }
 
   componentDidMount() {
-    // console.log('REACTHOME::CDM::PARSEDCONTEXTUSER',this.context.user)
-    fetch('/home/' + this.context.user.email)
-      .then(function (response) {
-        return response.json()
-      }).then(function (json) {
-        console.log('REACTHOME::CDM::PARSEDJSON', JSON.stringify(json));
-        var dbret = json[0];
-        this.setState({
-        id: dbret.pk_id_user,
-        firstname: dbret.firstname,
-        lastname: dbret.lastname, 
-        email: dbret.email
-        });
-      }.bind(this))
-      .catch(function (ex) {
-        console.log('REACTHOME::CDM::ERRORPARSING', ex)
-      });
+
   }
 
   render() {
@@ -64,7 +56,7 @@ export default class HomePage extends React.Component {
         <div className="jumbotron">
           <h1>Fantasy Eq</h1>
           <p>Welcome {this.context.user ? ' ' + this.context.user.givenName : null}.  Select your fantasy equestrian sport, then choose your horse and rider pairs before the next competition!!</p>
-          <p>HERE IS MY DBUSER:: {' '+this.state.firstname + ' ' + this.state.lastname + ' - ' + this.props.email}</p>
+          <p>HERE IS MY DBUSER:: {this.props.id}</p>    
           <p><a className="btn btn-warning btn-lg" href="#" role="button">Learn more »</a></p>
         </div>
         <hr />

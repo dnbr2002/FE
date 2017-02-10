@@ -27,6 +27,8 @@ app.use(express.static(__dirname + '/public/'));
 
 app.use(morgan('combined'));
 
+app.use(bodyParser.json());
+
 app.use(require('webpack-dev-middleware')(compiler, {
  filename: 'bundle.js',
   hot: true,
@@ -100,8 +102,25 @@ app.get('/eventers/:tier', function (req, res) {
     })
 })
 
+app.post('/eventerteam/', function (req, res) {
+    console.log("MIDDLE::SUBMIT EVENT TEAM CALLED::ID"+ (req.body.id)); 
+    console.log("MIDDLE::SUBMIT EVENT TEAM CALLED::teamName "+ (req.body.teamName)); 
+    console.log("MIDDLE::SUBMIT EVENT TEAM CALLED::team "+ JSON.stringify(req.body.team)); 
+   
+    dbFunc.submitEventTeam(req.body.id,req.body.teamName, function (data, err) {
+      if (data) {
+        console.log("MIDDLE::INSERTED EVENT TEAM "+JSON.stringify(data))
+        res.status(200).send(data);
+      }else {
+        console.log("MIDDLE::FAILED::INSERTED EVENT TEAM");
+        res.status(500).send('fail');
+      }
+    })
+})
 
-app.post('/me', bodyParser.json(), stormpath.loginRequired, function (req, res) {
+
+
+app.post('/me', stormpath.loginRequired, function (req, res) {
   function writeError(message) {
     res.status(400);
     res.json({ message: message, status: 400 });
@@ -171,8 +190,5 @@ app.listen(port, function () {
     app.get('stormpathLogger').transports.console.level = 'error';
   });
 
-  // app.get('/me', function(req,res) {
-  //    console.log("SP Info: " + JSON.stringify(res.body));
-  // })
 });
 
