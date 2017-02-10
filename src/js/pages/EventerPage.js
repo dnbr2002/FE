@@ -118,15 +118,14 @@ export default class EventerPage extends React.Component {
     this.setState({ value: event.target.value });
   }
 
-  handleSubmit(event) {
+  handleSubmit(event, propid) {
     //alert('A name was submitted: ' + this.state.value);
     event.preventDefault();
-    console.log('REACT::EVENTERTEAM::CDM::SELECTEDTEAM', JSON.stringify(this.state.selected));
-    //var jsonData = JSON.parse(this.state.selected);
-    // for (var i=0; i < jsonData.counters.length; i++) {
-    //   var counter = jsonData.counters[i];
-    //   console.log('REACT::EVENTERTEAM::CDM::SELECTEDTEAM::PARSED::',counter.ridername);
-    // }
+    console.log('REACT::EVENTERTEAM::HANDLESUBMIT::SELECTEDTEAM', JSON.stringify(this.state.selected));
+    console.log('REACT::EVENTERTEAM::HANDLESUBMIT::PROPID', JSON.stringify(propid));
+
+
+
     fetch(`/eventerteam/`,{
       method: 'POST',
       headers: {
@@ -134,29 +133,13 @@ export default class EventerPage extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        id: this.state.id,
+        id: propid,
         teamName: this.state.value,
         team: this.state.selected,
       })
     })
   }
 
-
-
-
-    // handleClickBtn = () => {
-    //   console.log(this.state.selected);
-    // }
-
-    // onRowSelect =({id},isSelected) => {
-    //   //Here is your answer
-    //   if (isSelected) {
-    //     console.log("REFTABLES::",this.refs.tables.state.selectedRowKeys);
-    //     this.setState({ selected: [...this.state.selected, id]});
-    //   } else {
-    //     this.setState({ selected: this.state.selected.filter(it => it !== id)});
-    //   }
-    // }
 
     handleRowSelect = (row, isSelected, e) => {
       if (isSelected) {
@@ -181,6 +164,7 @@ export default class EventerPage extends React.Component {
         onSelect: this.handleRowSelect.bind(this)
       };
 
+
       return (
         <div className="container">
           <div className="jumbotron">
@@ -192,7 +176,7 @@ export default class EventerPage extends React.Component {
               <li>Select a total of 8 riders from the list below plus one scratch replacement.</li>
               <li>All teams lock once the first rider enters the dressage arena.</li>
               <li>Once you've picked you team, go create your own league, invite your friends or join and existing league.</li>
-              <li>{this.props.id}</li>
+              <li>User Prop ID:: {this.props.id}</li>
             </ol>
           </div>
 
@@ -206,7 +190,7 @@ export default class EventerPage extends React.Component {
             <Row>
               <h4>{this.state.value}</h4>
 
-              <form onSubmit={this.handleSubmit}>
+              <form onSubmit={() => this.handleSubmit(this.props.id)}>
                 <label>
                   Enter Team Name&nbsp;&nbsp;
                 <input type="text" value={this.state.value} onChange={this.handleChange} />
