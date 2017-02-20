@@ -22,10 +22,6 @@ export default class HomePage extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log("REACT::HOMEPAGE::PROPS::",this.props);
-    console.log("REACT::HOME::IDPROP::",this.props.id)
-        console.log("REACT::MasterPAGE::PROPS::",this.props.MasterPage);
-
     //this.state = { dbuser: {} };
     
     //this.componentDidMount = this.componentDidMount.bind(this);
@@ -35,20 +31,7 @@ export default class HomePage extends React.Component {
 
   componentWillMount() { }
 
-  // componentDidMount() {
-  //   this.serverRequest = $.get('/home/' + this.context.user.email, function (result) {
-  //     console.log('REACTHOME::CDM::PARSEDJSON', JSON.stringify(result));
-  //     var dbret = result[0];
-  //     console.log('REACTHOME::CDM::PARSEDPROP', JSON.stringify(dbret));
-  //     this.setState({
-  //       email: dbret.email
-  //     });
-  //   }.bind(this));
-  // }
-
-  componentDidMount() {
-
-  }
+  componentDidMount() { }
 
   render() {
     return (

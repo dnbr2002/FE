@@ -1,25 +1,18 @@
 import { Link, browserHistory } from 'react-router';
-import React, { PropTypes } from 'react';
+import React, { Component,PropTypes } from 'react';
 import DocumentTitle from 'react-document-title';
 import Header from './Header';
 import Footer from './Footer';
 import HomePage from './HomePage';
 import EventerPage from './EventerPage'
 import { LoginLink } from 'react-stormpath';
-
-var uid = {};
-var dbuser = {};
+//import { Component } from 'react-bootstrap';
 
 
-// var UserId = React.createClass({
-//   render: function() {
-//       return (
-//         <div>
-//           <h1>{this.props.uid}</h1>
-//         </div>
-//       );
-//     }
-// });
+//var dbuser = {}
+var EvtTier1 = [];
+var EvtTier2 = [];
+var EvtTier3 = [];
 
 export default class MasterPage extends React.Component {
     static contextTypes = {
@@ -28,11 +21,9 @@ export default class MasterPage extends React.Component {
 
     constructor(props) {
     super(props);
-    console.log("REACT::MASTERPAGE::PROPS::",this.props);
-    
-    this.state = { dbuser: {} };
-    
     //this.componentDidMount = this.componentDidMount.bind(this);
+
+    this.state = { dbuser: {}, tier1: [], tier2: [], tier3: [] };
   }
 
   componentDidMount() {
@@ -42,8 +33,8 @@ export default class MasterPage extends React.Component {
       .then(function (response) {
         return response.json()
       }).then(function (json) {
-        console.log('REACTMASTERPAGE::CDM::PARSEDJSON', JSON.stringify(json));
-        dbuser = json[0];
+       // console.log('REACTMASTERPAGE::CDM::PARSEDJSON', JSON.stringify(json));
+        var dbuser = json[0]
         this.setState({
         id: dbuser.pk_id_user,
         firstname: dbuser.firstname,
@@ -52,15 +43,54 @@ export default class MasterPage extends React.Component {
         });
       }.bind(this))
       .catch(function (ex) {
-        console.log('REACTHOME::CDM::ERRORPARSING', ex)
+      //  console.log('REACTHOME::CDM::ERRORPARSING', ex)
       });
+
+      fetch(`/eventers/` + 1)
+      .then(function (response) {
+        return response.json();
+      }).then(function (json) {
+        EvtTier1 = json
+        this.setState({
+          tier1: EvtTier1
+        });
+      }.bind(this))
+      .catch(function (ex) {
+      })
+
+ fetch(`/eventers/` + 2)
+      .then(function (response) {
+        return response.json();
+      }).then(function (json) {
+        EvtTier2 = json
+        this.setState({
+          tier2: EvtTier2
+        });
+      }.bind(this))
+      .catch(function (ex) {
+      })
+
+ fetch(`/eventers/` + 3)
+      .then(function (response) {
+        return response.json();
+      }).then(function (json) {
+        EvtTier3 = json;
+        this.setState({
+          tier3: EvtTier3
+        });
+      }.bind(this))
+      .catch(function (ex) {
+      })
     }
   }
 
   render() {
     var children = React.Children.map(this.props.children, function (child)  {
       return React.cloneElement(child, {
-        id: this.state.id
+        id: this.state.id,
+        tier1: this.state.tier1,
+        tier2: this.state.tier2,
+        tier3: this.state.tier3
       })
     },this)
     return (
