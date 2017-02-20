@@ -17,10 +17,7 @@ export default class IndexPage extends React.Component {
         </h2>
         <hr />
         <div className="jumbotron">
-          <p>
-            <strong>This is the example fullstack project for React, ReactRouter, Flux, Express, and Stormpath</strong>
-          </p>
-          <p>Ready to begin? Try these Stormpath features that are included in this example:</p>
+          
           <ol className="lead">
             <NotAuthenticated>
               <li><Link to="/register">Registration</Link></li>

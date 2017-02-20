@@ -30,9 +30,6 @@ export default class Header extends React.Component {
               <Authenticated>
                 <li><Link to="/profile" activeClassName="active">Profile</Link></li>
               </Authenticated>
-                   <Authenticated>
-                <li><Link to="/sortable" activeClassName="active">sortable</Link></li>
-              </Authenticated>
               <Authenticated>
                 <NavDropdown title="Fantasy Sports" alt="Fantasy Sports" id="Fantasy Sports">
                   <MenuItem href="/eventerpage">Fantasy Eventer</MenuItem>

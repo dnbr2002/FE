@@ -16,6 +16,7 @@ var when = require('when');
 // };
 //var pg = require('pg');
 var pgp = require('pg-promise')();
+var PS = require('pg-promise').PreparedStatemen
 var db = pgp('postgres://postgres:password1@localhost:5432/fedb');
 
 // db.connect()
@@ -57,7 +58,7 @@ exports.getEventers = getEventers;
 function getEventers(tier, cb) {
     console.log("DATA::GETEVENTERS::PARAMETER" + tier);
     var sql = "select c.pk_id_competitor, r.ridername, r.pic, h.horsename, c.eventtier "
-       // var sql = "select h.horsename as value, r.ridername as label "
+        // var sql = "select h.horsename as value, r.ridername as label "
         + "from competitors c "
         + "join riders r on c.fk_rider=r.pk_id_rider "
         + "join horses h on c.fk_horse=h.pk_id_horse "
@@ -77,13 +78,13 @@ function getEventers(tier, cb) {
 }
 
 exports.submitEventTeam = submitEventTeam;
-function submitEventTeam(userId, teamName, cb){
-    console.log("DATA::SUBMITEVENTTEAM::PARAMETER::USERID",userId); 
-    console.log("DATA::SUBMITEVENTTEAM::PARAMETER::TEAMNAME",teamName); 
+function submitEventTeam(userId, teamName, cb) {
+    console.log("DATA::SUBMITEVENTTEAM::PARAMETER::USERID", userId);
+    console.log("DATA::SUBMITEVENTTEAM::PARAMETER::TEAMNAME", teamName);
 
-    var sql = "Insert into eventteams (fk_userid,etname) values ("+userId+","+asMyQuote(teamName)+");"
+    var sql = "Insert into eventteams (fk_userid,etname) values (" + userId + "," + asMyQuote(teamName) + ");"
     console.log("DATA::INSERTEAMNAME::SQL-" + sql + " ON CONNECTION::" + JSON.stringify(db));
-        db.any(sql)
+    db.any(sql)
         .then(function (data) {
             console.log("DATA::INSERTTEAMNAME::SUCCESS");
             //resolve(rows)
@@ -93,8 +94,27 @@ function submitEventTeam(userId, teamName, cb){
             console.log("DATA::INSERTEAMNAME::ERROR" + JSON.stringify(error));
             cb(error);
             // error;
-        });   
+        });
 }
+
+// exports.submitEventTeam = submitEventTeam;
+// function submitEventTeam(userId, teamName, cb) {
+//     console.log("DATA::SUBMITEVENTTEAM::PARAMETER::USERID", userId);
+//     console.log("DATA::SUBMITEVENTTEAM::PARAMETER::TEAMNAME", teamName);
+
+//     var addTeam = new PS('add-team', "Insert into eventteams (fk_userid,etname) values (" 
+//     + userId + "," + asMyQuote(teamName) 
+//     + ") returning pk_id_eventteam where not exists (select fk_userid from eventteams where fk_userid="+ userId +";");
+
+//     db.none(addTeam)
+//     .then(()=> {
+//         console.log("DATA::TEAMADDED::SUCCESS");
+//     })
+//     .catch(error=> {
+//         console.log("DATA::TEAMADDED:ERROR::",error);
+//     });
+
+// }
 
 
 
