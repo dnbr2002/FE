@@ -1,5 +1,6 @@
 export MasterPage from './MasterPage'
 export IndexPage from './IndexPage'
+export IndexPage2 from './IndexPage2'
 export HomePage from './HomePage'
 export LoginPage from './LoginPage'
 export RegisterPage from './RegisterPage'

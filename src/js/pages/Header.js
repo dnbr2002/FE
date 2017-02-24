@@ -1,10 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { Navbar, NavItem, NavDropdown, DropdownButton, MenuItem } from 'react-bootstrap';
-//require("react-bootstrap/lib/DropdownToggle")
-//DropdownButton = ReactBootstrap.DropdownButton
-
-
 import { LoginLink, LogoutLink, NotAuthenticated, Authenticated } from 'react-stormpath';
 
 const headerDivStyle = {

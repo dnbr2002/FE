@@ -4,7 +4,8 @@ import DocumentTitle from 'react-document-title';
 import Header from './Header';
 import Footer from './Footer';
 import HomePage from './HomePage';
-import EventerPage from './EventerPage'
+import EventerPage from './EventerPage';
+import IndexPage from './IndexPage.js';
 //import { LoginLink } from 'react-stormpath';
 //import { Component } from 'react-bootstrap';
 
@@ -95,7 +96,7 @@ export default class MasterPage extends React.Component {
       })
     }, this)
     return (
-      <DocumentTitle title='Fantasy Equestrian'>
+      <DocumentTitle title='Fantasy Eq'>
         <div className='MasterPage'>
           <Header />
           {children}

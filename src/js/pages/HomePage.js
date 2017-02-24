@@ -4,7 +4,6 @@ const jumboDivStyle = {
 
 import { Link, browserHistory } from 'react-router';
 import React, { PropTypes } from 'react';
-import DocumentTitle from 'react-document-title';
 import { Authenticated } from 'react-stormpath';
 import { Col, Image, Panel, Grid, Row } from 'react-bootstrap';
 import  EventerPage from './EventerPage';
@@ -17,6 +16,7 @@ var dbuser = {};
 
 export default class HomePage extends React.Component {
   static contextTypes = {
+    authenticated: React.PropTypes.bool,
     user: React.PropTypes.object
   };
 

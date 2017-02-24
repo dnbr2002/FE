@@ -9,6 +9,10 @@ export default class MyTeamsPage extends React.Component {
     user: React.PropTypes.object
   };
 
+    constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
         <DocumentTitle title={`My Team`}>
@@ -21,7 +25,7 @@ export default class MyTeamsPage extends React.Component {
         <hr />
         <div className="jumbotron">
           <p>
-            <strong>Set your team here!!!!</strong>
+            <strong>DBUser: {this.props.id}</strong>
           </p>
         </div>
       </div>

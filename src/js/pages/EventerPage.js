@@ -1,21 +1,16 @@
 "use strict";
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
-import ReactDOM from 'react-dom';
-import DocumentTitle from 'react-document-title';
+//import { Link } from 'react-router';
+//import ReactDOM from 'react-dom';
+
 import { Authenticated } from 'react-stormpath';
 import { Col, Image, Panel, Grid, Row, Button, Form, Schema, Property } from 'react-bootstrap';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 
 // //import { images } from 'js/img';
 
-//var EvtTier1
-// var EvtTier2
-// var EvtTier3
 var EvtTeam
 var dbuser = {};
-
-
 
 
 //Table stuff
@@ -43,9 +38,7 @@ export default class EventerPage extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log("REACT::EVENTERPAGE::PROPS::", this.props);
     this.state = { selected: [], value: '' };
-    // this.state = { value: '' };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -54,8 +47,6 @@ export default class EventerPage extends React.Component {
       defaultSortName: 'ridername',  // default sort column name
       defaultSortOrder: 'desc'  // default sort order
     };
-
-
   }
 
   componentWillMount() { }
@@ -120,6 +111,7 @@ export default class EventerPage extends React.Component {
 
 
     return (
+      
       <div className="container">
         <div className="jumbotron">
           <h2>Welcome Fantasy Eventers</h2>
